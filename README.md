@@ -2,6 +2,16 @@
 ## Background
 This project uses spaCy to rank and sort candidates based on how thier job title is similar to the hiring manager's search query. rankPotentials.py asks the user to enter a query and how many top candidates they want to see on the screen. It will then proceed to ask the user if they want to star a particular visible candidate, and it will re-calculate based off of the starred candidate.
 
+Attributes:
+
+id : unique identifier for candidate (numeric)
+
+job_title : job title for candidate (text)
+
+location : geographical location for candidate (text)
+
+connections: number of connections candidate has, 500+ means over 500 (text)
+
 ## data
 data is not pushed due to gitignore. Raw data from Apziva is in Raw folder. Final refinements will be saved in the results folder
 
