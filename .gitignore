@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 data
+
+notebooks/.vector_cache
