@@ -33,7 +33,7 @@ def sortAndDisplay(df,maxVisibleCandidates):
     df = df.sort_values(by=['fit','connection'],ascending=False)
     df = df.reset_index(drop=True)
     for i in range(maxVisibleCandidates):
-        print(f"{i}: {df.loc[i,'job_title']} {df.loc[i,'fit']}")
+        print(f"{i+1}: {df.loc[i,'job_title']} {df.loc[i,'fit']}")
     print('---')
 
 def embedding_for_vocab(filepath, word_index,
