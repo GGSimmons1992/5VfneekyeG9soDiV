@@ -1,7 +1,7 @@
 import pandas as pd
-import spacy
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+import pickle
 
 def reScoreSpacySimilarityBasedOnStar(starIndex,df,query):
     starTitle = df.loc[starIndex,'job_title']
@@ -36,6 +36,11 @@ def sortAndDisplay(df,maxVisibleCandidates):
         print(f"{i+1}: {df.loc[i,'job_title']} {df.loc[i,'fit']}")
     print('---')
 
+def sortAndReturnSortedDF(df):
+    df = df.sort_values(by=['fit','connection'],ascending=False)
+    df = df.reset_index(drop=True)
+    return df
+
 def embedding_for_vocab(filepath, word_index,
                         embedding_dim):
     vocab_size = len(word_index) + 1
@@ -65,3 +70,7 @@ def retrieveGloveSimilarityScore(title,query,embedding_matrix_vocab,tokenizer):
     titleVector = retrieveAverageGloveVectorFromTitle(title,embedding_matrix_vocab,tokenizer)
     queryVector = retrieveAverageGloveVectorFromTitle(query,embedding_matrix_vocab,tokenizer)
     return cosine_similarity(queryVector.reshape(1,-1), titleVector.reshape(1,-1))[0,0]
+
+def saveModel(model,modelName):
+    pickle.dump(model, open(f"../Models/{modelName}.pkl", 'wb'))
+    
